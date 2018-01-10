@@ -1,0 +1,4 @@
+TODO :
+
+- add DCGAN option for D and G networks (secondary)
+- change optimizer to RMSprop

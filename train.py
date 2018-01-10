@@ -10,6 +10,7 @@ dataset = data_loader.load_data()
 dataset_size = len(data_loader)
 print('#training images = %d' % dataset_size)
 
+# Initializes model
 model = create_model(opt)
 visualizer = Visualizer(opt)
 total_steps = 0
@@ -23,8 +24,10 @@ for epoch in range(opt.epoch_count, opt.niter + opt.niter_decay + 1):
         visualizer.reset()
         total_steps += opt.batchSize
         epoch_iter += opt.batchSize
-        model.set_input(data)
-        model.optimize_parameters()
+
+        # Training is done in the two following lines
+        model.set_input(data) # inputs batch of data and splits into A and B category
+        model.optimize_parameters() # parameters update
 
         if total_steps % opt.display_freq == 0:
             save_result = total_steps % opt.update_html_freq == 0
